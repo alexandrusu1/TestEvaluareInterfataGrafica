@@ -111,5 +111,11 @@ namespace QuizAppGUI
             chestionar.SalvareRezultat(chestionar.Scor);
             groupBoxQuiz.Visible = false;
         }
+
+        private void btnAddQuestion_Click(object sender, EventArgs e)
+        {
+            FormAddQuestion formAdd = new FormAddQuestion();
+            formAdd.ShowDialog();
+        }
     }
 }

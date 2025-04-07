@@ -15,6 +15,8 @@
         private Button btnSubmit;
         private Label lblTimer;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Button btnAddQuestion;
+
 
         protected override void Dispose(bool disposing)
         {
@@ -96,6 +98,18 @@
             this.btnSubmit.Text = "Răspunde";
             this.btnSubmit.UseVisualStyleBackColor = true;
             this.btnSubmit.Click += new System.EventHandler(this.btnSubmit_Click);
+            // 
+            // btnAddQuestion
+            // 
+            this.btnAddQuestion = new System.Windows.Forms.Button();
+            this.btnAddQuestion.Location = new System.Drawing.Point(250, 30); // Poți ajusta poziția după preferință
+            this.btnAddQuestion.Name = "btnAddQuestion";
+            this.btnAddQuestion.Size = new System.Drawing.Size(120, 30);
+            this.btnAddQuestion.TabIndex = 2;
+            this.btnAddQuestion.Text = "Adaugă întrebare";
+            this.btnAddQuestion.UseVisualStyleBackColor = true;
+            this.btnAddQuestion.Click += new System.EventHandler(this.btnAddQuestion_Click);
+            this.Controls.Add(this.btnAddQuestion);
 
             // lblTimer
             this.lblTimer.AutoSize = true;
