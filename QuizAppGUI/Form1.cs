@@ -1,6 +1,10 @@
+﻿// Form1.cs
 using QuizAppGUI.Models;
 using QuizAppGUI.Services;
 using System;
+using System.Drawing;
+using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace QuizAppGUI
@@ -15,6 +19,8 @@ namespace QuizAppGUI
         {
             InitializeComponent();
             comboBoxQuizTypes.DataSource = Enum.GetValues(typeof(TipQuiz));
+            this.BackgroundImage = Image.FromFile("Resources/background.png");
+            this.BackgroundImageLayout = ImageLayout.Stretch;
         }
 
         private void btnStart_Click(object sender, EventArgs e)
@@ -24,8 +30,9 @@ namespace QuizAppGUI
                 chestionar = new Chestionar(tip);
                 intrebareIndex = 0;
                 timpRamas = Chestionar.TimpLimita;
+                comboBoxQuizTypes.Enabled = false;
 
-                lblTimer.Text = $"Timp r�mas: {FormatTimp(timpRamas)}";
+                lblTimer.Text = $"Timp rămas: {FormatTimp(timpRamas)}";
                 timer1.Start();
 
                 groupBoxQuiz.Visible = true;
@@ -44,6 +51,8 @@ namespace QuizAppGUI
             radioButtonB.Text = intrebare.Optiuni[1];
             radioButtonC.Text = intrebare.Optiuni[2];
             radioButtonD.Text = intrebare.Optiuni[3];
+
+            pictureBoxImagine.ImageLocation = Path.Combine("Resources", intrebare.Imagine);
 
             radioButtonA.Checked = false;
             radioButtonB.Checked = false;
@@ -87,7 +96,7 @@ namespace QuizAppGUI
 
             if (timpRamas >= 0)
             {
-                lblTimer.Text = $"Timp r�mas: {FormatTimp(timpRamas)}";
+                lblTimer.Text = $"Timp rămas: {FormatTimp(timpRamas)}";
             }
 
             if (timpRamas <= 0)
@@ -110,12 +119,35 @@ namespace QuizAppGUI
             MessageBox.Show($"{mesaj}\nScor final: {chestionar.Scor}/{chestionar.Intrebari.Count}", "Rezultat");
             chestionar.SalvareRezultat(chestionar.Scor);
             groupBoxQuiz.Visible = false;
+            comboBoxQuizTypes.Enabled = true;
         }
 
         private void btnAddQuestion_Click(object sender, EventArgs e)
         {
             FormAddQuestion formAdd = new FormAddQuestion();
             formAdd.ShowDialog();
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            if (chestionar == null || chestionar.Intrebari == null)
+            {
+                MessageBox.Show("Te rog pornește mai întâi un quiz.", "Avertisment", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            string keyword = textBoxSearch.Text.Trim().ToLower();
+            var rezultat = chestionar.Intrebari
+                .FirstOrDefault(i => i.Text.ToLower().Contains(keyword));
+
+            if (rezultat != null)
+            {
+                MessageBox.Show($"Întrebare găsită:\n{rezultat.Text}\n\nA) {rezultat.Optiuni[0]}\nB) {rezultat.Optiuni[1]}\nC) {rezultat.Optiuni[2]}\nD) {rezultat.Optiuni[3]}", "Rezultat căutare");
+            }
+            else
+            {
+                MessageBox.Show("Nicio întrebare găsită cu cuvântul introdus.", "Căutare eşuată");
+            }
         }
     }
 }

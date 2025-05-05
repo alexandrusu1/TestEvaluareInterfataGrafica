@@ -24,15 +24,37 @@ namespace QuizAppGUI.Services
             var intrebari = new List<Intrebare>();
             var linii = File.ReadAllLines(fisier);
 
-            for (int i = 0; i < linii.Length; i += 6)
+            for (int i = 0; i < linii.Length;)
             {
-                var optiuni = new List<string> { linii[i + 1], linii[i + 2], linii[i + 3], linii[i + 4] };
-                var raspunsCorect = (OptiuniRaspuns)Enum.Parse(typeof(OptiuniRaspuns), linii[i + 5]);
-                intrebari.Add(new Intrebare(linii[i], optiuni, raspunsCorect));
+                string text = linii[i];
+                string imagine;
+                List<string> optiuni;
+                OptiuniRaspuns raspunsCorect;
+
+          
+                if (linii[i + 1].Trim().EndsWith(".jpg", StringComparison.OrdinalIgnoreCase) ||
+                    linii[i + 1].Trim().EndsWith(".png", StringComparison.OrdinalIgnoreCase))
+                {
+                    imagine = linii[i + 1];
+                    optiuni = new List<string> { linii[i + 2], linii[i + 3], linii[i + 4], linii[i + 5] };
+                    raspunsCorect = (OptiuniRaspuns)Enum.Parse(typeof(OptiuniRaspuns), linii[i + 6]);
+                    i += 7;
+                }
+                else
+                {
+                    imagine = ""; 
+                    optiuni = new List<string> { linii[i + 1], linii[i + 2], linii[i + 3], linii[i + 4] };
+                    raspunsCorect = (OptiuniRaspuns)Enum.Parse(typeof(OptiuniRaspuns), linii[i + 5]);
+                    i += 6;
+                }
+
+                intrebari.Add(new Intrebare(text, optiuni, raspunsCorect, imagine));
             }
 
             return intrebari;
         }
+
+
 
         public void IncrementareScor()
         {

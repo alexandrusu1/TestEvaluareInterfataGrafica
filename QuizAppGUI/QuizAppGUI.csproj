@@ -12,6 +12,22 @@
     <None Remove="FisiereQuiz\geografie.txt" />
     <None Remove="FisiereQuiz\istorie.txt" />
     <None Remove="FisiereQuiz\matematica.txt" />
+    <None Remove="Resources\add.jpg" />
+    <None Remove="Resources\america.jpg" />
+    <None Remove="Resources\australia.jpg" />
+    <None Remove="Resources\background.png" />
+    <None Remove="Resources\continente.jpg" />
+    <None Remove="Resources\divide.jpg" />
+    <None Remove="Resources\fluviu.jpg" />
+    <None Remove="Resources\imperiu.jpg" />
+    <None Remove="Resources\minus.jpg" />
+    <None Remove="Resources\multiply.jpg" />
+    <None Remove="Resources\ocean.jpg" />
+    <None Remove="Resources\patrat.jpg" />
+    <None Remove="Resources\populatie.jpg" />
+    <None Remove="Resources\presedinte.jpg" />
+    <None Remove="Resources\razboi.jpg" />
+    <None Remove="Resources\revolutie.jpg" />
   </ItemGroup>
 
   <ItemGroup>
@@ -22,6 +38,57 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="FisiereQuiz\matematica.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\add.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\america.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\background.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Resources\australia.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\continente.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\divide.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\fluviu.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\imperiu.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\minus.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\multiply.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\ocean.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\patrat.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\populatie.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\presedinte.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\razboi.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\revolutie.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
