@@ -1,5 +1,4 @@
-﻿// Form1.cs
-using QuizAppGUI.Models;
+﻿using QuizAppGUI.Models;
 using QuizAppGUI.Services;
 using System;
 using System.Drawing;
@@ -21,7 +20,17 @@ namespace QuizAppGUI
             comboBoxQuizTypes.DataSource = Enum.GetValues(typeof(TipQuiz));
             this.BackgroundImage = Image.FromFile("Resources/background.png");
             this.BackgroundImageLayout = ImageLayout.Stretch;
+
+            // Configurare timer
+            timer1.Interval = 1000; // 1 secundă
+            timer1.Tick += timer1_Tick;
+
+            // Ascunde controalele de căutare la inițializare
+            textBoxSearch.Visible = false;
+            btnSearch.Visible = false;
+            btnUpdateQuestion.Visible = false; // Ascuns implicit
         }
+
 
         private void btnStart_Click(object sender, EventArgs e)
         {
@@ -32,6 +41,16 @@ namespace QuizAppGUI
                 timpRamas = Chestionar.TimpLimita;
                 comboBoxQuizTypes.Enabled = false;
 
+                // Ascunde controalele din meniul principal
+                comboBoxQuizTypes.Visible = false;
+                btnStart.Visible = false;
+                btnAddQuestion.Visible = false;
+
+                // Afișează controalele de căutare și actualizare întrebare
+                textBoxSearch.Visible = true;
+                btnSearch.Visible = true;
+                btnUpdateQuestion.Visible = true; // Afișează butonul de actualizare întrebare
+
                 lblTimer.Text = $"Timp rămas: {FormatTimp(timpRamas)}";
                 timer1.Start();
 
@@ -39,6 +58,28 @@ namespace QuizAppGUI
                 AfiseazaIntrebareCurenta();
             }
         }
+
+        private void btnUpdateQuestion_Click(object sender, EventArgs e)
+        {
+            if (chestionar == null || chestionar.Intrebari == null || chestionar.Intrebari.Count == 0)
+            {
+                MessageBox.Show("Nu există întrebări disponibile pentru actualizare.", "Eroare", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Selectează întrebarea curentă pentru actualizare
+            var intrebareDeActualizat = chestionar.Intrebari[intrebareIndex];
+
+            // Deschide formularul de actualizare
+            FormAddQuestion formUpdate = new FormAddQuestion(intrebareDeActualizat);
+            if (formUpdate.ShowDialog() == DialogResult.OK)
+            {
+                // Actualizează întrebarea cu noile date
+                chestionar.Intrebari[intrebareIndex] = formUpdate.IntrebareActualizata;
+                AfiseazaIntrebareCurenta();
+            }
+        }
+
 
         private void AfiseazaIntrebareCurenta()
         {
@@ -52,12 +93,16 @@ namespace QuizAppGUI
             radioButtonC.Text = intrebare.Optiuni[2];
             radioButtonD.Text = intrebare.Optiuni[3];
 
-            pictureBoxImagine.ImageLocation = Path.Combine("Resources", intrebare.Imagine);
+            pictureBoxImagine.ImageLocation = !string.IsNullOrEmpty(intrebare.Imagine)
+                ? Path.Combine("Resources", intrebare.Imagine)
+                : null;
 
             radioButtonA.Checked = false;
             radioButtonB.Checked = false;
             radioButtonC.Checked = false;
             radioButtonD.Checked = false;
+
+            groupBoxQuiz.Visible = true;
         }
 
         private void btnSubmit_Click(object sender, EventArgs e)
@@ -120,6 +165,16 @@ namespace QuizAppGUI
             chestionar.SalvareRezultat(chestionar.Scor);
             groupBoxQuiz.Visible = false;
             comboBoxQuizTypes.Enabled = true;
+
+            // Afișează controalele din meniul principal
+            comboBoxQuizTypes.Visible = true;
+            btnStart.Visible = true;
+            btnAddQuestion.Visible = true;
+
+            // Ascunde controalele de căutare și actualizare întrebare
+            textBoxSearch.Visible = false;
+            btnSearch.Visible = false;
+            btnUpdateQuestion.Visible = false; // Ascunde butonul de actualizare întrebare
         }
 
         private void btnAddQuestion_Click(object sender, EventArgs e)
@@ -151,3 +206,4 @@ namespace QuizAppGUI
         }
     }
 }
+

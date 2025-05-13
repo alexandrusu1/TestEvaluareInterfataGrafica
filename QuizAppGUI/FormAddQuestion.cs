@@ -1,8 +1,8 @@
 ﻿using QuizAppGUI.Models;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace QuizAppGUI
 {
@@ -11,11 +11,37 @@ namespace QuizAppGUI
         private const int LungimeMinimaIntrebare = 5;
         private const int LungimeMinimaRaspuns = 1;
 
+        // Pentru actualizare
+        private readonly bool isEditMode = false;
+        private Intrebare intrebareEditata;
+        public Intrebare IntrebareActualizata => intrebareEditata;
+
         public FormAddQuestion()
         {
             InitializeComponent();
             comboBoxTip.DataSource = Enum.GetValues(typeof(TipQuiz));
             comboBoxRaspunsCorect.SelectedIndex = 0;
+        }
+
+        // Constructor pentru actualizare
+        public FormAddQuestion(Intrebare intrebareExistenta)
+        {
+            InitializeComponent();
+            comboBoxTip.DataSource = Enum.GetValues(typeof(TipQuiz));
+            comboBoxRaspunsCorect.SelectedIndex = 0;
+
+            isEditMode = true;
+
+            // Populează controalele cu datele întrebării existente
+            textBoxIntrebare.Text = intrebareExistenta.Text;
+            textBoxA.Text = intrebareExistenta.Optiuni[0];
+            textBoxB.Text = intrebareExistenta.Optiuni[1];
+            textBoxC.Text = intrebareExistenta.Optiuni[2];
+            textBoxD.Text = intrebareExistenta.Optiuni[3];
+            comboBoxRaspunsCorect.SelectedIndex = (int)intrebareExistenta.RaspunsCorect - 1;
+            textBoxImagine.Text = intrebareExistenta.Imagine ?? "";
+            // Tipul quiz nu se modifică la editare, deci îl putem dezactiva
+            comboBoxTip.Enabled = false;
         }
 
         private void btnSalveaza_Click(object sender, EventArgs e)
@@ -28,6 +54,27 @@ namespace QuizAppGUI
                 return;
             }
 
+            // Pentru actualizare, doar construim obiectul și returnăm cu DialogResult.OK
+            if (isEditMode)
+            {
+                intrebareEditata = new Intrebare(
+                    textBoxIntrebare.Text.Trim(),
+                    new List<string>
+                    {
+                        textBoxA.Text.Trim(),
+                        textBoxB.Text.Trim(),
+                        textBoxC.Text.Trim(),
+                        textBoxD.Text.Trim()
+                    },
+                    (OptiuniRaspuns)(comboBoxRaspunsCorect.SelectedIndex + 1),
+                    textBoxImagine.Text.Trim()
+                );
+                this.DialogResult = DialogResult.OK;
+                this.Close();
+                return;
+            }
+
+            // Pentru adăugare, scriem în fișier
             TipQuiz tipSelectat = (TipQuiz)comboBoxTip.SelectedItem;
             string path = Path.Combine("FisiereQuiz", $"{tipSelectat.ToString().ToLower()}.txt");
 
@@ -39,6 +86,7 @@ namespace QuizAppGUI
                 sw.WriteLine(textBoxC.Text.Trim());
                 sw.WriteLine(textBoxD.Text.Trim());
                 sw.WriteLine(comboBoxRaspunsCorect.SelectedIndex + 1);
+                sw.WriteLine(textBoxImagine.Text.Trim());
             }
 
             MessageBox.Show("Întrebare adăugată cu succes!", "Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -90,3 +138,4 @@ namespace QuizAppGUI
         }
     }
 }
+
