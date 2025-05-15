@@ -21,14 +21,14 @@ namespace QuizAppGUI
             this.BackgroundImage = Image.FromFile("Resources/background.png");
             this.BackgroundImageLayout = ImageLayout.Stretch;
 
-            // Configurare timer
-            timer1.Interval = 1000; // 1 secundă
+   
+            timer1.Interval = 1000; 
             timer1.Tick += timer1_Tick;
 
-            // Ascunde controalele de căutare la inițializare
+    
             textBoxSearch.Visible = false;
             btnSearch.Visible = false;
-            btnUpdateQuestion.Visible = false; // Ascuns implicit
+            btnUpdateQuestion.Visible = false; 
         }
 
 
@@ -41,15 +41,13 @@ namespace QuizAppGUI
                 timpRamas = Chestionar.TimpLimita;
                 comboBoxQuizTypes.Enabled = false;
 
-                // Ascunde controalele din meniul principal
                 comboBoxQuizTypes.Visible = false;
                 btnStart.Visible = false;
                 btnAddQuestion.Visible = false;
 
-                // Afișează controalele de căutare și actualizare întrebare
                 textBoxSearch.Visible = true;
                 btnSearch.Visible = true;
-                btnUpdateQuestion.Visible = true; // Afișează butonul de actualizare întrebare
+                btnUpdateQuestion.Visible = true; 
 
                 lblTimer.Text = $"Timp rămas: {FormatTimp(timpRamas)}";
                 timer1.Start();
@@ -67,14 +65,13 @@ namespace QuizAppGUI
                 return;
             }
 
-            // Selectează întrebarea curentă pentru actualizare
+         
             var intrebareDeActualizat = chestionar.Intrebari[intrebareIndex];
 
-            // Deschide formularul de actualizare
             FormAddQuestion formUpdate = new FormAddQuestion(intrebareDeActualizat);
             if (formUpdate.ShowDialog() == DialogResult.OK)
             {
-                // Actualizează întrebarea cu noile date
+               
                 chestionar.Intrebari[intrebareIndex] = formUpdate.IntrebareActualizata;
                 AfiseazaIntrebareCurenta();
             }
@@ -166,15 +163,15 @@ namespace QuizAppGUI
             groupBoxQuiz.Visible = false;
             comboBoxQuizTypes.Enabled = true;
 
-            // Afișează controalele din meniul principal
+           
             comboBoxQuizTypes.Visible = true;
             btnStart.Visible = true;
             btnAddQuestion.Visible = true;
 
-            // Ascunde controalele de căutare și actualizare întrebare
+            
             textBoxSearch.Visible = false;
             btnSearch.Visible = false;
-            btnUpdateQuestion.Visible = false; // Ascunde butonul de actualizare întrebare
+            btnUpdateQuestion.Visible = false; 
         }
 
         private void btnAddQuestion_Click(object sender, EventArgs e)

@@ -9,7 +9,7 @@
         private System.Windows.Forms.Button btnAddQuestion;
         private System.Windows.Forms.TextBox textBoxSearch;
         private System.Windows.Forms.Button btnSearch;
-        private System.Windows.Forms.Button btnUpdateQuestion; // Adăugat
+        private System.Windows.Forms.Button btnUpdateQuestion; 
         private System.Windows.Forms.GroupBox groupBoxQuiz;
         private System.Windows.Forms.Label lblQuestion;
         private System.Windows.Forms.RadioButton radioButtonA;
@@ -36,7 +36,7 @@
             this.btnAddQuestion = new System.Windows.Forms.Button();
             this.textBoxSearch = new System.Windows.Forms.TextBox();
             this.btnSearch = new System.Windows.Forms.Button();
-            this.btnUpdateQuestion = new System.Windows.Forms.Button(); // Adăugat
+            this.btnUpdateQuestion = new System.Windows.Forms.Button(); 
             this.groupBoxQuiz = new System.Windows.Forms.GroupBox();
             this.lblQuestion = new System.Windows.Forms.Label();
             this.radioButtonA = new System.Windows.Forms.RadioButton();
@@ -55,7 +55,7 @@
             void StyleButton(System.Windows.Forms.Button btn)
             {
                 btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-                btn.BackColor = System.Drawing.Color.FromArgb(30, 144, 255); // Albastru comercial
+                btn.BackColor = System.Drawing.Color.FromArgb(30, 144, 255); 
                 btn.ForeColor = System.Drawing.Color.White;
                 btn.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
                 btn.FlatAppearance.BorderSize = 0;
@@ -98,11 +98,11 @@
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
 
             // btnUpdateQuestion
-            this.btnUpdateQuestion.Location = new System.Drawing.Point(560, 70); // Poziționat în dreapta butonului de căutare
+            this.btnUpdateQuestion.Location = new System.Drawing.Point(560, 70);
             this.btnUpdateQuestion.Size = new System.Drawing.Size(130, 35);
             this.btnUpdateQuestion.Text = "Actualizează întrebare";
             this.btnUpdateQuestion.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left;
-            this.btnUpdateQuestion.Visible = false; // Ascuns implicit
+            this.btnUpdateQuestion.Visible = false; 
             StyleButton(this.btnUpdateQuestion);
             this.btnUpdateQuestion.Click += new System.EventHandler(this.btnUpdateQuestion_Click);
 
