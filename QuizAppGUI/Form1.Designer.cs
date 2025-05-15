@@ -98,7 +98,7 @@
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
 
             // btnUpdateQuestion
-            this.btnUpdateQuestion.Location = new System.Drawing.Point(480, 70); // Poziționat în dreapta butonului de căutare
+            this.btnUpdateQuestion.Location = new System.Drawing.Point(560, 70); // Poziționat în dreapta butonului de căutare
             this.btnUpdateQuestion.Size = new System.Drawing.Size(130, 35);
             this.btnUpdateQuestion.Text = "Actualizează întrebare";
             this.btnUpdateQuestion.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left;
