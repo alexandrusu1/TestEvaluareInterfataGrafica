@@ -30,7 +30,7 @@ namespace QuizAppGUI
             textBoxSearch.Visible = false;
             btnSearch.Visible = false;
             btnUpdateQuestion.Visible = false;
-            lblTimer.Visible = false; // Ascunde timerul la pornire
+            lblTimer.Visible = false; 
         }
 
         private void btnStart_Click(object sender, EventArgs e)
