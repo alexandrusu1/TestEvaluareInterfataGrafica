@@ -4,12 +4,13 @@
     {
         private System.ComponentModel.IContainer components = null;
 
+        private System.Windows.Forms.PictureBox pictureBoxLogo; 
         private System.Windows.Forms.ComboBox comboBoxQuizTypes;
         private System.Windows.Forms.Button btnStart;
         private System.Windows.Forms.Button btnAddQuestion;
         private System.Windows.Forms.TextBox textBoxSearch;
         private System.Windows.Forms.Button btnSearch;
-        private System.Windows.Forms.Button btnUpdateQuestion; 
+        private System.Windows.Forms.Button btnUpdateQuestion;
         private System.Windows.Forms.GroupBox groupBoxQuiz;
         private System.Windows.Forms.Label lblQuestion;
         private System.Windows.Forms.RadioButton radioButtonA;
@@ -31,12 +32,13 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            this.pictureBoxLogo = new System.Windows.Forms.PictureBox();
             this.comboBoxQuizTypes = new System.Windows.Forms.ComboBox();
             this.btnStart = new System.Windows.Forms.Button();
             this.btnAddQuestion = new System.Windows.Forms.Button();
             this.textBoxSearch = new System.Windows.Forms.TextBox();
             this.btnSearch = new System.Windows.Forms.Button();
-            this.btnUpdateQuestion = new System.Windows.Forms.Button(); 
+            this.btnUpdateQuestion = new System.Windows.Forms.Button();
             this.groupBoxQuiz = new System.Windows.Forms.GroupBox();
             this.lblQuestion = new System.Windows.Forms.Label();
             this.radioButtonA = new System.Windows.Forms.RadioButton();
@@ -49,37 +51,48 @@
             this.pictureBoxImagine = new System.Windows.Forms.PictureBox();
 
             this.groupBoxQuiz.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxImagine)).BeginInit();
             this.SuspendLayout();
 
-            void StyleButton(System.Windows.Forms.Button btn)
+            void StyleMinimalButton(System.Windows.Forms.Button btn)
             {
                 btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-                btn.BackColor = System.Drawing.Color.FromArgb(30, 144, 255); 
-                btn.ForeColor = System.Drawing.Color.White;
-                btn.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
                 btn.FlatAppearance.BorderSize = 0;
-                btn.Height = 50;
-                btn.Width = 200;
+                btn.BackColor = System.Drawing.Color.White;
+                btn.ForeColor = System.Drawing.Color.FromArgb(30, 144, 255);
+                btn.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular);
+                btn.Cursor = System.Windows.Forms.Cursors.Hand;
+                btn.Height = 40;
+                btn.Width = 170;
             }
 
+            // pictureBoxLogo
+            this.pictureBoxLogo.Location = new System.Drawing.Point(250, 40); 
+            this.pictureBoxLogo.Size = new System.Drawing.Size(300, 300);     
+            this.pictureBoxLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxLogo.Image = System.Drawing.Image.FromFile("Resources/logo.png");
+            this.pictureBoxLogo.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBoxLogo.Anchor = System.Windows.Forms.AnchorStyles.Top;
+
+
             // comboBoxQuizTypes
-            this.comboBoxQuizTypes.Location = new System.Drawing.Point(300, 50);
+            this.comboBoxQuizTypes.Location = new System.Drawing.Point(300, 350); 
             this.comboBoxQuizTypes.Size = new System.Drawing.Size(200, 24);
             this.comboBoxQuizTypes.Anchor = System.Windows.Forms.AnchorStyles.Top;
 
             // btnStart
-            this.btnStart.Location = new System.Drawing.Point(300, 100);
+            this.btnStart.Location = new System.Drawing.Point(300, 450); 
             this.btnStart.Text = "Start Quiz";
             this.btnStart.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            StyleButton(this.btnStart);
+            StyleMinimalButton(this.btnStart);
             this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
 
             // btnAddQuestion
-            this.btnAddQuestion.Location = new System.Drawing.Point(300, 160);
+            this.btnAddQuestion.Location = new System.Drawing.Point(300, 550); 
             this.btnAddQuestion.Text = "Adaugă întrebare";
             this.btnAddQuestion.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            StyleButton(this.btnAddQuestion);
+            StyleMinimalButton(this.btnAddQuestion);
             this.btnAddQuestion.Click += new System.EventHandler(this.btnAddQuestion_Click);
 
             // textBoxSearch
@@ -94,16 +107,16 @@
             this.btnSearch.Text = "Caută întrebare";
             this.btnSearch.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left;
             this.btnSearch.Visible = false;
-            StyleButton(this.btnSearch);
+            StyleMinimalButton(this.btnSearch);
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
 
             // btnUpdateQuestion
-            this.btnUpdateQuestion.Location = new System.Drawing.Point(560, 70);
-            this.btnUpdateQuestion.Size = new System.Drawing.Size(130, 35);
+            this.btnUpdateQuestion.Location = new System.Drawing.Point(520, 70);
+            this.btnUpdateQuestion.Size = new System.Drawing.Size(170, 35);
             this.btnUpdateQuestion.Text = "Actualizează întrebare";
             this.btnUpdateQuestion.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left;
-            this.btnUpdateQuestion.Visible = false; 
-            StyleButton(this.btnUpdateQuestion);
+            this.btnUpdateQuestion.Visible = false;
+            StyleMinimalButton(this.btnUpdateQuestion);
             this.btnUpdateQuestion.Click += new System.EventHandler(this.btnUpdateQuestion_Click);
 
             // groupBoxQuiz
@@ -151,7 +164,7 @@
             this.btnSubmit.Size = new System.Drawing.Size(150, 40);
             this.btnSubmit.Text = "Răspunde";
             this.btnSubmit.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            StyleButton(this.btnSubmit);
+            StyleMinimalButton(this.btnSubmit);
             this.btnSubmit.Click += new System.EventHandler(this.btnSubmit_Click);
 
             // pictureBoxImagine
@@ -164,23 +177,24 @@
             this.lblTimer.AutoSize = true;
             this.lblTimer.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             this.lblTimer.Text = "Timp rămas:";
-            this.lblTimer.ForeColor = System.Drawing.Color.Red;
-            
+            this.lblTimer.Visible = false;
 
             // Form1
             this.ClientSize = new System.Drawing.Size(800, 500);
+            this.Controls.Add(this.pictureBoxLogo); 
             this.Controls.Add(this.comboBoxQuizTypes);
             this.Controls.Add(this.btnStart);
             this.Controls.Add(this.btnAddQuestion);
             this.Controls.Add(this.textBoxSearch);
             this.Controls.Add(this.btnSearch);
-            this.Controls.Add(this.btnUpdateQuestion); // Adăugat
+            this.Controls.Add(this.btnUpdateQuestion);
             this.Controls.Add(this.lblTimer);
             this.Controls.Add(this.groupBoxQuiz);
             this.Name = "Form1";
             this.Text = "Quiz App";
             this.BackColor = System.Drawing.Color.FromArgb(240, 240, 240);
             this.groupBoxQuiz.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxImagine)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

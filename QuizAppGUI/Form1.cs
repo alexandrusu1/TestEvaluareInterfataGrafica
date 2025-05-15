@@ -18,19 +18,20 @@ namespace QuizAppGUI
         {
             InitializeComponent();
             comboBoxQuizTypes.DataSource = Enum.GetValues(typeof(TipQuiz));
-            this.BackgroundImage = Image.FromFile("Resources/background.png");
-            this.BackgroundImageLayout = ImageLayout.Stretch;
+            this.BackgroundImage = Image.FromFile("Resources/gg.jpg");
 
-   
-            timer1.Interval = 1000; 
+            this.BackgroundImageLayout = ImageLayout.Stretch;
+            this.Icon = new Icon("Resources/logo.ico");
+
+
+            timer1.Interval = 1000;
             timer1.Tick += timer1_Tick;
 
-    
             textBoxSearch.Visible = false;
             btnSearch.Visible = false;
-            btnUpdateQuestion.Visible = false; 
+            btnUpdateQuestion.Visible = false;
+            lblTimer.Visible = false; // Ascunde timerul la pornire
         }
-
 
         private void btnStart_Click(object sender, EventArgs e)
         {
@@ -47,7 +48,9 @@ namespace QuizAppGUI
 
                 textBoxSearch.Visible = true;
                 btnSearch.Visible = true;
-                btnUpdateQuestion.Visible = true; 
+                btnUpdateQuestion.Visible = true;
+                lblTimer.Visible = true;
+                pictureBoxLogo.Visible = false; 
 
                 lblTimer.Text = $"Timp rămas: {FormatTimp(timpRamas)}";
                 timer1.Start();
@@ -57,6 +60,7 @@ namespace QuizAppGUI
             }
         }
 
+
         private void btnUpdateQuestion_Click(object sender, EventArgs e)
         {
             if (chestionar == null || chestionar.Intrebari == null || chestionar.Intrebari.Count == 0)
@@ -65,18 +69,15 @@ namespace QuizAppGUI
                 return;
             }
 
-         
             var intrebareDeActualizat = chestionar.Intrebari[intrebareIndex];
 
             FormAddQuestion formUpdate = new FormAddQuestion(intrebareDeActualizat);
             if (formUpdate.ShowDialog() == DialogResult.OK)
             {
-               
                 chestionar.Intrebari[intrebareIndex] = formUpdate.IntrebareActualizata;
                 AfiseazaIntrebareCurenta();
             }
         }
-
 
         private void AfiseazaIntrebareCurenta()
         {
@@ -163,15 +164,16 @@ namespace QuizAppGUI
             groupBoxQuiz.Visible = false;
             comboBoxQuizTypes.Enabled = true;
 
-           
             comboBoxQuizTypes.Visible = true;
             btnStart.Visible = true;
             btnAddQuestion.Visible = true;
 
-            
             textBoxSearch.Visible = false;
             btnSearch.Visible = false;
-            btnUpdateQuestion.Visible = false; 
+            btnUpdateQuestion.Visible = false;
+            lblTimer.Visible = false; 
+            pictureBoxLogo.Visible = true;
+
         }
 
         private void btnAddQuestion_Click(object sender, EventArgs e)
@@ -203,4 +205,3 @@ namespace QuizAppGUI
         }
     }
 }
-
