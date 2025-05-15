@@ -164,6 +164,8 @@
             this.lblTimer.AutoSize = true;
             this.lblTimer.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             this.lblTimer.Text = "Timp rămas:";
+            this.lblTimer.ForeColor = System.Drawing.Color.Red;
+            
 
             // Form1
             this.ClientSize = new System.Drawing.Size(800, 500);
