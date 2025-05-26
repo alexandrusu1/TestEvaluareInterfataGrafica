@@ -19,10 +19,7 @@ namespace QuizAppGUI
             InitializeComponent();
             comboBoxQuizTypes.DataSource = Enum.GetValues(typeof(TipQuiz));
             this.BackgroundImage = Image.FromFile("Resources/gg.jpg");
-
             this.BackgroundImageLayout = ImageLayout.Stretch;
-            this.Icon = new Icon("Resources/logo.ico");
-
 
             timer1.Interval = 1000;
             timer1.Tick += timer1_Tick;
@@ -30,7 +27,21 @@ namespace QuizAppGUI
             textBoxSearch.Visible = false;
             btnSearch.Visible = false;
             btnUpdateQuestion.Visible = false;
-            lblTimer.Visible = false; 
+            lblTimer.Visible = false;
+
+            btnSubmit.Visible = false;        
+            btnLeaderboard.Visible = true;    
+
+            if (AppSession.UserRole == "admin")
+            {
+                btnAddQuestion.Visible = true;
+                btnUpdateQuestion.Visible = false; 
+            }
+            else
+            {
+                btnAddQuestion.Visible = false;
+                btnUpdateQuestion.Visible = false;
+            }
         }
 
         private void btnStart_Click(object sender, EventArgs e)
@@ -48,18 +59,23 @@ namespace QuizAppGUI
 
                 textBoxSearch.Visible = true;
                 btnSearch.Visible = true;
-                btnUpdateQuestion.Visible = true;
+
+                btnUpdateQuestion.Visible = (AppSession.UserRole == "admin");
                 lblTimer.Visible = true;
-                pictureBoxLogo.Visible = false; 
+                pictureBoxLogo.Visible = false;
+
+                btnSubmit.Visible = true;         
+                btnLeaderboard.Visible = false;   
 
                 lblTimer.Text = $"Timp rămas: {FormatTimp(timpRamas)}";
                 timer1.Start();
 
                 groupBoxQuiz.Visible = true;
+                btnSubmit.Visible = true;
+
                 AfiseazaIntrebareCurenta();
             }
         }
-
 
         private void btnUpdateQuestion_Click(object sender, EventArgs e)
         {
@@ -159,21 +175,23 @@ namespace QuizAppGUI
         private void FinalizeazaQuiz(string mesaj)
         {
             timer1.Stop();
+            TimeSpan durata = DateTime.Now - chestionar.StartTime;
             MessageBox.Show($"{mesaj}\nScor final: {chestionar.Scor}/{chestionar.Intrebari.Count}", "Rezultat");
-            chestionar.SalvareRezultat(chestionar.Scor);
+            chestionar.SalvareRezultat(chestionar.Scor, durata);
             groupBoxQuiz.Visible = false;
             comboBoxQuizTypes.Enabled = true;
 
             comboBoxQuizTypes.Visible = true;
             btnStart.Visible = true;
-            btnAddQuestion.Visible = true;
-
+            btnAddQuestion.Visible = (AppSession.UserRole == "admin");
             textBoxSearch.Visible = false;
             btnSearch.Visible = false;
             btnUpdateQuestion.Visible = false;
-            lblTimer.Visible = false; 
+            lblTimer.Visible = false;
             pictureBoxLogo.Visible = true;
 
+            btnSubmit.Visible = false;        
+            btnLeaderboard.Visible = true;    
         }
 
         private void btnAddQuestion_Click(object sender, EventArgs e)
@@ -202,6 +220,12 @@ namespace QuizAppGUI
             {
                 MessageBox.Show("Nicio întrebare găsită cu cuvântul introdus.", "Căutare eşuată");
             }
+        }
+
+        private void btnLeaderboard_Click(object sender, EventArgs e)
+        {
+            var leaderboard = new LeaderboardForm();
+            leaderboard.ShowDialog();
         }
     }
 }

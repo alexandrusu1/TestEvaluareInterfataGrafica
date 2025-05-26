@@ -8,7 +8,7 @@ namespace QuizAppGUI.Models
         public string Text { get; set; }
         public List<string> Optiuni { get; set; }
         public OptiuniRaspuns RaspunsCorect { get; set; }
-        public string Imagine { get; set; }  // nou
+        public string Imagine { get; set; }  
 
         public Intrebare(string text, List<string> optiuni, OptiuniRaspuns raspunsCorect, string imagine)
         {

@@ -3,6 +3,12 @@ using System.Windows.Forms;
 
 namespace QuizAppGUI
 {
+    static class AppSession
+    {
+        public static string UserRole { get; set; } = "user";
+        public static string UserName { get; set; } = "";
+    }
+
     static class Program
     {
         [STAThread]
@@ -10,7 +16,16 @@ namespace QuizAppGUI
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+
+            using (var login = new LoginForm())
+            {
+                if (login.ShowDialog() == DialogResult.OK)
+                {
+                    AppSession.UserRole = login.UserRole;
+                    AppSession.UserName = login.UserName;
+                    Application.Run(new Form1());
+                }
+            }
         }
     }
 }

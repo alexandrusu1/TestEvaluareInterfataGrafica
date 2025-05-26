@@ -4,7 +4,7 @@
     {
         private System.ComponentModel.IContainer components = null;
 
-        private System.Windows.Forms.PictureBox pictureBoxLogo; 
+        private System.Windows.Forms.PictureBox pictureBoxLogo;
         private System.Windows.Forms.ComboBox comboBoxQuizTypes;
         private System.Windows.Forms.Button btnStart;
         private System.Windows.Forms.Button btnAddQuestion;
@@ -21,6 +21,7 @@
         private System.Windows.Forms.Label lblTimer;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.PictureBox pictureBoxImagine;
+        private System.Windows.Forms.Button btnLeaderboard;
 
         protected override void Dispose(bool disposing)
         {
@@ -49,6 +50,7 @@
             this.lblTimer = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.pictureBoxImagine = new System.Windows.Forms.PictureBox();
+            this.btnLeaderboard = new System.Windows.Forms.Button();
 
             this.groupBoxQuiz.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).BeginInit();
@@ -68,28 +70,27 @@
             }
 
             // pictureBoxLogo
-            this.pictureBoxLogo.Location = new System.Drawing.Point(250, 40); 
-            this.pictureBoxLogo.Size = new System.Drawing.Size(300, 300);     
+            this.pictureBoxLogo.Location = new System.Drawing.Point(250, 40);
+            this.pictureBoxLogo.Size = new System.Drawing.Size(300, 300);
             this.pictureBoxLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBoxLogo.Image = System.Drawing.Image.FromFile("Resources/logo.png");
             this.pictureBoxLogo.BackColor = System.Drawing.Color.Transparent;
             this.pictureBoxLogo.Anchor = System.Windows.Forms.AnchorStyles.Top;
 
-
             // comboBoxQuizTypes
-            this.comboBoxQuizTypes.Location = new System.Drawing.Point(300, 350); 
+            this.comboBoxQuizTypes.Location = new System.Drawing.Point(300, 350);
             this.comboBoxQuizTypes.Size = new System.Drawing.Size(200, 24);
             this.comboBoxQuizTypes.Anchor = System.Windows.Forms.AnchorStyles.Top;
 
             // btnStart
-            this.btnStart.Location = new System.Drawing.Point(300, 450); 
+            this.btnStart.Location = new System.Drawing.Point(300, 450);
             this.btnStart.Text = "Start Quiz";
             this.btnStart.Anchor = System.Windows.Forms.AnchorStyles.Top;
             StyleMinimalButton(this.btnStart);
             this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
 
             // btnAddQuestion
-            this.btnAddQuestion.Location = new System.Drawing.Point(300, 550); 
+            this.btnAddQuestion.Location = new System.Drawing.Point(300, 550);
             this.btnAddQuestion.Text = "Adaugă întrebare";
             this.btnAddQuestion.Anchor = System.Windows.Forms.AnchorStyles.Top;
             StyleMinimalButton(this.btnAddQuestion);
@@ -119,6 +120,14 @@
             StyleMinimalButton(this.btnUpdateQuestion);
             this.btnUpdateQuestion.Click += new System.EventHandler(this.btnUpdateQuestion_Click);
 
+            // btnLeaderboard
+            this.btnLeaderboard.Location = new System.Drawing.Point(300, 650);
+            this.btnLeaderboard.Size = new System.Drawing.Size(200, 40);
+            this.btnLeaderboard.Text = "Leaderboard";
+            this.btnLeaderboard.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            StyleMinimalButton(this.btnLeaderboard);
+            this.btnLeaderboard.Click += new System.EventHandler(this.btnLeaderboard_Click);
+
             // groupBoxQuiz
             this.groupBoxQuiz.Controls.Add(this.lblQuestion);
             this.groupBoxQuiz.Controls.Add(this.radioButtonA);
@@ -128,7 +137,7 @@
             this.groupBoxQuiz.Controls.Add(this.btnSubmit);
             this.groupBoxQuiz.Controls.Add(this.pictureBoxImagine);
             this.groupBoxQuiz.Location = new System.Drawing.Point(30, 120);
-            this.groupBoxQuiz.Size = new System.Drawing.Size(740, 300);
+            this.groupBoxQuiz.Size = new System.Drawing.Size(740, 500); 
             this.groupBoxQuiz.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
             this.groupBoxQuiz.Visible = false;
 
@@ -140,37 +149,38 @@
             this.lblQuestion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 
             // radioButtonA
-            this.radioButtonA.Location = new System.Drawing.Point(20, 240);
-            this.radioButtonA.Size = new System.Drawing.Size(300, 30);
+            this.radioButtonA.Location = new System.Drawing.Point(20, 80);
+            this.radioButtonA.Size = new System.Drawing.Size(700, 30);
             this.radioButtonA.Font = new System.Drawing.Font("Segoe UI", 10F);
 
             // radioButtonB
-            this.radioButtonB.Location = new System.Drawing.Point(20, 280);
-            this.radioButtonB.Size = new System.Drawing.Size(300, 30);
+            this.radioButtonB.Location = new System.Drawing.Point(20, 120);
+            this.radioButtonB.Size = new System.Drawing.Size(700, 30);
             this.radioButtonB.Font = new System.Drawing.Font("Segoe UI", 10F);
 
             // radioButtonC
-            this.radioButtonC.Location = new System.Drawing.Point(20, 320);
-            this.radioButtonC.Size = new System.Drawing.Size(300, 30);
+            this.radioButtonC.Location = new System.Drawing.Point(20, 160);
+            this.radioButtonC.Size = new System.Drawing.Size(700, 30);
             this.radioButtonC.Font = new System.Drawing.Font("Segoe UI", 10F);
 
             // radioButtonD
-            this.radioButtonD.Location = new System.Drawing.Point(20, 360);
-            this.radioButtonD.Size = new System.Drawing.Size(300, 30);
+            this.radioButtonD.Location = new System.Drawing.Point(20, 200);
+            this.radioButtonD.Size = new System.Drawing.Size(700, 30);
             this.radioButtonD.Font = new System.Drawing.Font("Segoe UI", 10F);
 
             // btnSubmit
-            this.btnSubmit.Location = new System.Drawing.Point(20, 410);
+            this.btnSubmit.Location = new System.Drawing.Point(20, 250);
             this.btnSubmit.Size = new System.Drawing.Size(150, 40);
             this.btnSubmit.Text = "Răspunde";
             this.btnSubmit.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            StyleMinimalButton(this.btnSubmit);
             this.btnSubmit.Click += new System.EventHandler(this.btnSubmit_Click);
+            this.groupBoxQuiz.Controls.Add(this.btnSubmit);
 
             // pictureBoxImagine
-            this.pictureBoxImagine.Location = new System.Drawing.Point(350, 20);
-            this.pictureBoxImagine.Size = new System.Drawing.Size(360, 200);
+            this.pictureBoxImagine.Location = new System.Drawing.Point(350, 300);
+            this.pictureBoxImagine.Size = new System.Drawing.Size(360, 180);
             this.pictureBoxImagine.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+
 
             // lblTimer
             this.lblTimer.Location = new System.Drawing.Point(600, 30);
@@ -180,8 +190,8 @@
             this.lblTimer.Visible = false;
 
             // Form1
-            this.ClientSize = new System.Drawing.Size(800, 500);
-            this.Controls.Add(this.pictureBoxLogo); 
+            this.ClientSize = new System.Drawing.Size(800, 800);
+            this.Controls.Add(this.pictureBoxLogo);
             this.Controls.Add(this.comboBoxQuizTypes);
             this.Controls.Add(this.btnStart);
             this.Controls.Add(this.btnAddQuestion);
@@ -190,6 +200,7 @@
             this.Controls.Add(this.btnUpdateQuestion);
             this.Controls.Add(this.lblTimer);
             this.Controls.Add(this.groupBoxQuiz);
+            this.Controls.Add(this.btnLeaderboard);
             this.Name = "Form1";
             this.Text = "Quiz App";
             this.BackColor = System.Drawing.Color.FromArgb(240, 240, 240);
@@ -201,3 +212,4 @@
         }
     }
 }
+

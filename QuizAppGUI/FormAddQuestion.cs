@@ -11,7 +11,7 @@ namespace QuizAppGUI
         private const int LungimeMinimaIntrebare = 5;
         private const int LungimeMinimaRaspuns = 1;
 
-        // Pentru actualizare
+   
         private readonly bool isEditMode = false;
         private Intrebare intrebareEditata;
         public Intrebare IntrebareActualizata => intrebareEditata;
@@ -23,7 +23,6 @@ namespace QuizAppGUI
             comboBoxRaspunsCorect.SelectedIndex = 0;
         }
 
-        // Constructor pentru actualizare
         public FormAddQuestion(Intrebare intrebareExistenta)
         {
             InitializeComponent();
@@ -32,7 +31,7 @@ namespace QuizAppGUI
 
             isEditMode = true;
 
-            // Populează controalele cu datele întrebării existente
+           
             textBoxIntrebare.Text = intrebareExistenta.Text;
             textBoxA.Text = intrebareExistenta.Optiuni[0];
             textBoxB.Text = intrebareExistenta.Optiuni[1];
@@ -40,7 +39,7 @@ namespace QuizAppGUI
             textBoxD.Text = intrebareExistenta.Optiuni[3];
             comboBoxRaspunsCorect.SelectedIndex = (int)intrebareExistenta.RaspunsCorect - 1;
             textBoxImagine.Text = intrebareExistenta.Imagine ?? "";
-            // Tipul quiz nu se modifică la editare, deci îl putem dezactiva
+        
             comboBoxTip.Enabled = false;
         }
 
@@ -54,7 +53,6 @@ namespace QuizAppGUI
                 return;
             }
 
-            // Pentru actualizare, doar construim obiectul și returnăm cu DialogResult.OK
             if (isEditMode)
             {
                 intrebareEditata = new Intrebare(
@@ -74,7 +72,6 @@ namespace QuizAppGUI
                 return;
             }
 
-            // Pentru adăugare, scriem în fișier
             TipQuiz tipSelectat = (TipQuiz)comboBoxTip.SelectedItem;
             string path = Path.Combine("FisiereQuiz", $"{tipSelectat.ToString().ToLower()}.txt");
 
